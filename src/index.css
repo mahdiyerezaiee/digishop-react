@@ -1,0 +1,145 @@
+*{
+  box-sizing: border-box;
+  font-family: Samim;
+
+}
+@font-face {
+  font-family: Samim;
+  src: url('../public/samim-font-v2.0.1/Farsi-Digits/Samim-Bold-FD.eot');
+  src: url('../public/samim-font-v2.0.1/Samim.eot') format('FontName-opentype'),
+  url('../public/samim-font-v2.0.1/Samim.woff') format('woff'),
+  url('../public/samim-font-v2.0.1/Samim.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+span{
+  display: block;
+}
+
+.center {
+  margin: 25px;
+  /*height: 100%;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+  font-family:Samim;
+  background-color:#edf2f9!important;
+
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+
+
+body {
+  /*color: #1a202c;*/
+  transition: color 0.2s ease-in;
+}
+
+#root {
+  height: 100vh;
+  width: 100%;
+}
+
+.app {
+
+  height: 100%;
+  width: 100%;
+
+  transition: background-color 0.2s ease-in;
+}
+
+#toggle {
+  width: 50px;
+  display: flex;
+  padding: 5px;
+  background-color: #d8e2ef;
+  display: block;
+  border-radius: 1000px;
+  cursor: pointer;
+  box-shadow: 0px 5px 20px -10px #000000;
+  transition: background-color 0.2s ease-in;
+}
+.toggle-inner {
+  width: 20px;
+  height: 15px;
+  background-image: url("moon-svgrepo-com.svg");
+  background-repeat: no-repeat;
+  border-radius: 1000px;
+  transition: margin-left 0.2s ease-in, background-color 0.2s ease-in;
+}
+#toggle .toggle-active {
+  margin-left: 20px;
+}
+
+
+
+
+h1 {
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+p {
+  opacity: .8;
+}
+
+
+
+
+.dark-mode {
+  color: white;
+  background-color: #0b1727!important;
+
+}
+.dark-mode body{
+  background-color: #0b1727!important;
+}
+
+.dark-mode #toggle {
+  background-color: #5e6e82;
+}
+.dark-mode .toggle-inner {
+  background-image: url("sun-svgrepo-com.svg");
+}
+.dark-mode .btn_info{
+  background-color: #2c7be5;
+  color: #ffffff;
+}
+.dark-mode .nav-bg{
+  background-color: #121e2d;
+
+}
+.dark-mode .nav-link{
+  color:  #ffffff!important;
+}
+.dark-mode .navbar-brand{
+  color:  #ffffff!important;
+}
+.dark-mode .card{
+  /*border: 3px solid #ff8906!important;*/
+  box-shadow: 0 2px 20px rgb(50 50 50 / 10%);
+  background-color: #121e2d;
+
+}
+.dark-mode .auth{
+  background-color: #121e2d;
+  border: #121e2d;
+;
+}

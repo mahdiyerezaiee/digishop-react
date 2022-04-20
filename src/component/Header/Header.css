@@ -1,0 +1,17 @@
+.nav-bg {
+  background: #ffffff;
+  z-index: 10;
+
+}
+.navbar-brand .img-fluid{
+  width: 150px;
+  height: 100px;
+}
+.nav-link{
+  color: #5e6e82 !important;
+}
+
+.nav-bg span{
+  color: #5e6e82 !important;
+}
+

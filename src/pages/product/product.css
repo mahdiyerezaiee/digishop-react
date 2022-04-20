@@ -1,0 +1,25 @@
+.btn-add-to-cart {
+    background: #2c7be5 !important;
+    border: none !important;
+    box-shadow: 0 5px 0px #1b4c8d;
+}
+
+.btn-add-to-cart:hover {
+    background: #2c7be5 !important;
+    box-shadow: none;
+    border: none !important;
+    color: #ffffff;
+    transition-delay: 10s;
+    transition: box-shadow 1.5s;
+}
+.description{
+    border: 1px solid #2c7be5 ;
+    border-radius: 10px;
+    direction: rtl;
+    color: #5e6e82;
+}
+.img-p{
+    background: white;
+    border: 3px solid #5e6e82;
+    border-radius: 10px;
+}
