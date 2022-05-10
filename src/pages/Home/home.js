@@ -2,7 +2,7 @@ import React ,{ useEffect , useState}from "react";
 // import axios from "axios";
 // import products from "../products";
 import {useDispatch  , useSelector} from "react-redux";
-import Product from "../../component/product/product";
+import Products from "../../component/product/product";
 import {ProductListAction} from "../../action/productAction";
 import {Row , Col} from "react-bootstrap";
 import axios from "axios";
@@ -33,7 +33,7 @@ const Home = () => {
 
 
                             <Col key={item._id} sm={12} md={6} lg={4}>
-                                <Product product={item}/>
+                                <Products product={item}/>
                             </Col>
 
 

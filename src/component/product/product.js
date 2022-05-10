@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {Card ,Image, CardImg} from "react-bootstrap";
 import './product.css'
-const Product = ({product}) => {
+const Products = ({product}) => {
 
     return(
 
@@ -24,4 +24,4 @@ const Product = ({product}) => {
         </Card>
     )
 }
-export default Product
+export default Products

@@ -1,17 +1,21 @@
 import './profile.css'
 import {useAuthValue} from '../../context/AuthContext'
-import {signOut, updateProfile} from 'firebase/auth'
-import {getDownloadURL, getStorage, ref, StorageReference} from "firebase/storage";
+import {createUserWithEmailAndPassword, signOut, updateProfile, updateEmail} from 'firebase/auth'
+import {getDownloadURL, getStorage, ref, StorageReference, uploadBytes} from "firebase/storage";
 import {getAuth} from "firebase/auth";
 import {useState} from "react";
 import {Card, CardImg, Title, ListGroup, ListGroupItem, FormControl, Form, Button} from "react-bootstrap";
 import {auth} from "../../firebase/firebase";
+import Sidebar from "../../Admin/components/sidebar/Sidebar";
 
 function Profile() {
-    const storage=getStorage()
-    const allInputs = {imgUrl: ''}
-    const [imageAsUrl, setImageAsUrl] = useState(allInputs)
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+
+    const storage = getStorage()
+    const [imageAsUrl, setImageAsUrl] = useState('')
     const [file, setFile] = useState('')
+    const [img, setImg] = useState('')
 
     const user = auth.currentUser;
 
@@ -19,66 +23,118 @@ function Profile() {
         const displayName = user.displayName;
         const email = user.email;
         const photoURL = user.photoURL;
+
+
         const emailVerified = user.emailVerified;
         const uid = user.uid;
 
     }
+
+
+// 'file' comes from the Blob or File API
+
+
+    // const upload = ()=>{
+    //     if(file == null)
+    //         return;
+    //     ref(storage,`/images/${file.name}`).put(file)
+    //         .on("state_changed" , alert("success") , alert);
+    // }
     const handleFireBaseUpload = e => {
         e.preventDefault()
-        // async magic goes here...
 
-        const mountainsRef = ref(storage, `image/${file}`);
+        const storageRef = ref(storage, `image/${file.name}`);
+        uploadBytes(storageRef, file).then(() => {
+            setFile(e.target.files[0])
+            console.log('Uploaded a blob or file!');
+        });
 
-        getDownloadURL(mountainsRef)
-            .then(function (fireBaseUrl) {
-                console.log(fireBaseUrl)
+        getDownloadURL(storageRef)
+            .then((url) => {
+                setImg(url)
+                user.photoURL = img
+
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+
+        updateProfile(user, {
+            photoURL: img
+        })
+            .then(() => {
+
+                setFile(e.target.files[0])
 
             })
 
     }
+    const nameUpdateHandler = e => {
+        e.preventDefault()
+        updateProfile(user, {
+            displayName: name,
+            // photoURL: img
+        })
+            .then(() => {
+                setName(e.target.value)
+                // setFile(e.target.files[0])
+
+            })
+
+            .then(() => {
+                alert("done")
+
+            })
+    }
+    console.log("file:", file)
+
 
     return (
 
+        <div className="home">
+            <Sidebar/>
+            <div className="homeContainer">
+                <div className='center'>
+                    <Card style={{width: '25rem'}}>
 
-        <div className='center'>
-            <Card style={{width: '25rem'}}>
 
-                {/*<Form onSubmit={handleFireBaseUpload}>*/}
-                {/*    <FormControl className="  my-3"*/}
-                {/*                 type='file'*/}
+                        <Card.Img variant="top"  src={user.photoURL}  className="card-img" />
+                        <input type="file"
+                               value={""}
+                               onChange={(e) => setFile(e.target.files[0])}
+                        />
 
-                {/*                 placeholder="عکس پروفایل"*/}
-                {/*                 required*/}
-                {/*                 onChange={e => setFile(e.target.value)}/>*/}
-                {/*<Button type="submit">ثبت تصویر</Button>*/}
-                {/*</Form>*/}
-                <Card.Img variant="top" src={imageAsUrl.imgUrl}/>
+                        <Button onClick={handleFireBaseUpload} variant="dark">آپلود تصویر</Button>
+                        <Card.Body>
+                            <Card.Title>صفحه کاربری</Card.Title>
+                            <Card.Text as="div">
+                                <h6>عزیز خوش آمدی :{user.displayName}</h6>
+                                <p>اطلاعات کاربری</p>
+                            </Card.Text>
+                        </Card.Body>
+                        <ListGroup className="list-group-flush">
+                            <ListGroupItem>ایمیل:{user.email} </ListGroupItem>
+                            <ListGroupItem>نام و نام خانوادگی :{user.displayName}</ListGroupItem>
+                            <FormControl className="  my-3"
+                                         type='name'
+                                         value={name}
 
-                <Card.Body>
-                    <Card.Title>صفحه کاربری</Card.Title>
-                    <Card.Text>
-                        <h6>عزیز خوش آمدی{user.displayName}</h6>
-                        <p>اطلاعات کاربری</p>
-                    </Card.Text>
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                    <ListGroupItem>ایمیل:{user.email} </ListGroupItem>
-                    <ListGroupItem>نام و نام خانوادگی :{user.displayName}</ListGroupItem>
-                </ListGroup>
-                <Card.Body>
+                                         placeholder="نام"
+                                         onChange={e => setName(e.target.value)}/>
 
-                    <Card.Link onClick={() => signOut(auth)}>خروج</Card.Link>
-                </Card.Body>
-            </Card>
-            {/*        <div className='profile'>*/}
-            {/*          <h3>صفحه کاربری</h3>*/}
-            {/*<h6>عزیز خوش آمدی{user.displayName}</h6>*/}
-            {/*            <p>اطلاعات کاربری</p>*/}
-            {/*          <p><strong>ایمیل: </strong>{user.email}</p>*/}
-            {/*          <p><strong>نام: </strong>{user.displayName}</p>*/}
-            {/*            <p><strong> </strong><img src={}/></p>*/}
-            {/*          <span ></span>*/}
-            {/*        </div>*/}
+                            <Button onClick={nameUpdateHandler} variant="dark">تغییر نام جدید</Button>
+
+                            {/*<button onClick={upload}>Upload</button>*/}
+                        </ListGroup>
+
+                        {/*<Card.Body>*/}
+
+                        {/*    <Card.Link onClick={() => signOut(auth)}>خروج</Card.Link>*/}
+                        {/*</Card.Body>*/}
+                    </Card>
+
+                </div>
+            </div>
         </div>
     )
 }
