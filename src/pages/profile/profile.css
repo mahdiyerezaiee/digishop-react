@@ -15,3 +15,12 @@
     margin-top: 30px;
     cursor: pointer;
 }
+.card-img{
+    width: 150px!important;
+    height: 150px;
+    border-radius: 100px!important;
+    margin: 10px auto;
+}
+.dark-mode .list-group-item{
+    color: white;
+}

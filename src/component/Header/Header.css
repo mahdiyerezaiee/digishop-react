@@ -1,7 +1,11 @@
 .nav-bg {
   background: #ffffff;
   z-index: 10;
+  /*flex: 8;*/
 
+}
+.nav-bg-md{
+  background: #ffffff;
 }
 .navbar-brand .img-fluid{
   width: 150px;

@@ -21,7 +21,7 @@ function Login(){
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
 
-                navigate('/profile')
+                navigate('/admin')
 
             })
             .catch(err => setError(err.message))

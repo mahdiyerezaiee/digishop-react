@@ -10,8 +10,8 @@
 }
 .cart-info img{
     background-color: rgba(0, 112, 255, 0.28);
-    width: 150px;
-    height: 150px;
+    width: 80px;
+    height: 80px;
 }
 .dark-mode .cart-info{
     color: white!important;

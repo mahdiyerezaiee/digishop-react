@@ -4,14 +4,17 @@ import {Link ,useParams, useNavigate , Route ,Routes} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {Row, Col, Image, ListGroup, Button, Container} from "react-bootstrap";
 import {ProductDetailAction} from "../../action/productAction";
-// import axios from "axios";
+
 import './product.css'
+
 const Product = () => {
 
     const history= useNavigate()
     const params = useParams()
     const dispatch = useDispatch()
     const productDetail=useSelector((state )=> state.productDetail)
+    const counter=useSelector((state )=> state.counter)
+
     const {loading , product} = productDetail
     // const [product , setProducts ]= useState({})
     useEffect(()=>{
@@ -32,6 +35,7 @@ const Product = () => {
                     <Col md={6} lg={6} className="my-3 text-end">
                         <div className="my-4">{product.name}</div>
                         <p className="my-4" >قیمت : {product.price} تومان </p>
+
                         <Button  onClick={addToCartHandler} className="btn btn-primary btn-add-to-cart" type="button">افزودن به سبد خرید</Button>
                     </Col>
                     <Col md={6} ><Image className="img-fluid img-p" src={product.image}/> </Col>

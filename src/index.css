@@ -122,10 +122,19 @@ p {
   background-color: #2c7be5;
   color: #ffffff;
 }
-.dark-mode .nav-bg{
+.dark-mode .nav-bg {
   background-color: #121e2d;
 
 }
+.dark-mode .nav-bg-md {
+  background-color: #121e2d;
+
+}
+.dark-mode .offcanvas {
+  background-color: #121e2d;
+
+}
+
 .dark-mode .nav-link{
   color:  #ffffff!important;
 }

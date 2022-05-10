@@ -14,6 +14,8 @@ import Home from "./pages/Home/home";
 import ResetPassword from "./component/Form/resetPassword";
 import Product from "./pages/product/product";
 import Cart from "./pages/Cart/cart";
+import Admin from "./Admin/admin";
+import Products from "./Admin/pages/Product/Products";
 // import useDarkMode from "./Hook/dark mode/dark-mode";
 import React from ".";
 function App() {
@@ -50,6 +52,9 @@ function App() {
                             </PrivateRoute>
                         }/>
                         <Route path="/login" element={<Login/>} />
+                        <Route path="/admin" element={<Admin/>}/>
+                        <Route path="/products" element={<Products/>}/>
+
                         <Route path="/register" element={<Register/>} />
                         <Route path='/verify-email' element={<VerifyEmail/>} />
                         <Route path='/reset-password' element={<ResetPassword/>} />

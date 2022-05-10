@@ -8,12 +8,18 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
             )
 
             if (existingItem) {
+                let addItem = []
+                state.cartItems.map(item => {
+                    if(item.product === action.payload.product){
+                        item.product_qty += 1
+                    }
+                    return addItem.push(item)
+                })
                 return {
                     ...state,
-                    cartItems: state.cartItems.map((i) =>
-                        i.product === existingItem.product ? item : i
-                    ),
+                    cartItems: addItem,
                 }
+
             } else {
                 return {
                     ...state,
@@ -25,6 +31,32 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
                 ...state,
                 cartItems: state.cartItems.filter((i) => i.product !== action.payload),
             }
+
+        case 'INCREMENT':
+            let addItem = []
+            state.cartItems.map(item => {
+                if(item.product === action.payload.product){
+                    item.product_qty += 1
+                }
+                return addItem.push(item)
+            })
+            return {
+                ...state,
+                cartItems: addItem,
+            }
+        case 'DECREMENT':
+            let removeItem = []
+            state.cartItems.map(item => {
+                if(item.product === action.payload.product){
+                    item.product_qty -= 1
+                }
+                return removeItem.push(item)
+            })
+            return {
+                ...state,
+                cartItems: removeItem,
+            }
+
 
         default:
             return state
